@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+.container {
+    background-color: white;
+    position: sticky;
+    display: flex;
+    border-bottom: 1px solid #f3f3f3;
+    z-index: 1;
+    color: $primary-color;
+
+    & > .innerContainer {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 $global-horizontal-margin;
+
+        @media (max-width: 1300px) {
+            margin: 0 $global-horizontal-margin-at-1200;
+        }
+
+        @media (max-width: 850px) {
+            margin: 0 2rem;
+        }
+
+        @media (max-width: 550px) {
+            margin: 0 1rem;
+        }
+    }
+
+    & button {
+        all: unset;
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+        cursor: pointer;
+    }
+}
+
+.linkContainer {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: center;
+
+    & li {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+}
