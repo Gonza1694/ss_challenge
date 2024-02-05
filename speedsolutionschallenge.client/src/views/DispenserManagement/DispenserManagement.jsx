@@ -74,12 +74,7 @@ const DispenserManagement = () => {
         try {
             //TODO: Validar la cantidad de HoseCount antes de realizar el add/update
 
-            if (editHose) {
-                const otherHoses = hosesForDispenser.filter((hose) => hose.hoseId !== editHose.hoseId);
-                if (otherHoses.length > selectedDispenser.hoseCount - 1) {
-                    console.error('No se puede asociar más mangueras al dispensador. Se alcanzó el límite.');
-                    return;
-                }
+            if (editHose) {             
 
                 await hoseService.updateHose(editHose.hoseId, {
                     name: hoseName,
@@ -87,10 +82,6 @@ const DispenserManagement = () => {
                     productId: hoseProduct,
                 });
             } else {
-                if (hoseCountForDispenser >= selectedDispenser.hoseCount) {
-                    console.error('No se puede asociar más mangueras al dispensador. Se alcanzó el límite.');
-                    return;
-                }
 
                 await hoseService.createHose({
                     name: hoseName,
