@@ -9,11 +9,12 @@ namespace SpeedSolutionsChallenge.Data.Models
         public int DispenserId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
 
         [Required]
         public int HoseCount { get; set; }
 
-        public List<Hose> Hoses { get; set; }
+        public List<Hose>? Hoses { get; set; }
     }
 }

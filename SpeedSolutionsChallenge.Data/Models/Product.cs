@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SpeedSolutionsChallenge.Data.Models
 {
@@ -8,32 +9,21 @@ namespace SpeedSolutionsChallenge.Data.Models
         public int ProductId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
 
         [Required]
-        public ProductType Type { get; set; }
+        [MaxLength(50)]
+        public string ProductType { get; set; }
 
         [Required]
-        public UnitType Unit { get; set; }
+        [MaxLength(50)]
+        public string Unit { get; set; }
 
         public bool IsDeleted { get; set; }
 
-        public List<Price> Prices { get; set; }
-
-        public Dispenser Dispenser { get; set; }
-
-        public List<Hose> Hoses { get; set; }
+        public List<Price>? Prices { get; set; }
+        public List<Hose>? Hoses { get; set; }
     }
 
-    public enum ProductType
-    {
-        Combustible,
-        Lubricante
-    }
-
-    public enum UnitType
-    {
-        Galones,
-        Litros
-    }
 }

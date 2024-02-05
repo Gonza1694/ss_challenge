@@ -9,16 +9,15 @@ namespace SpeedSolutionsChallenge.Data.Models
         public int HoseId { get; set; }
 
         [Required]
+        [MaxLength(255)]
         public string Name { get; set; }
+
+        public int? DispenserId { get; set; }
+
+        public int? ProductId { get; set; } 
 
         public bool IsDeleted { get; set; }
 
-        public int DispenserId { get; set; }
-
-        public Dispenser Dispenser { get; set; }
-
-        public int ProductId { get; set; }
-
-        public Product Product { get; set; }
     }
+
 }
