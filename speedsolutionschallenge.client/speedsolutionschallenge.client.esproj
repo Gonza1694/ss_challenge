@@ -9,11 +9,10 @@
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist</PublishAssetsDirectory>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\components\Button\" />
     <Folder Include="src\components\Header\" />
     <Folder Include="src\components\MainContent\" />
     <Folder Include="src\components\MainContent\" />
-
+    <Folder Include="src\services\" />
     <Folder Include="src\views\DispenserManagement\" />
     <Folder Include="src\views\Home\" />
     <Folder Include="src\views\HomeDashboard\" />
