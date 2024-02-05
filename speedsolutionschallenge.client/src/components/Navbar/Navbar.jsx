@@ -22,10 +22,10 @@ const Navbar = () => {
                         <button onClick={() => navigate('/ControlDispensadores')}>Control de dispensadores</button>
                     </li>
                     <li>
-                        <button onClick={() => navigate('/VisualizacionDispensadores')}>Visualización de dispensadores</button>
+                        <button onClick={() => navigate('/VisualizacionDispensadores')}>Visualizaci&oacute;n de dispensadores</button>
                     </li>
                     <li>
-                        <button onClick={() => navigate('/VisualizacionTransacciones')}>Visualización de transacciones</button>
+                        <button onClick={() => navigate('/VisualizacionTransacciones')}>Visualizaci&oacute;n de transacciones</button>
                     </li>
                 </ul>
             </div>
