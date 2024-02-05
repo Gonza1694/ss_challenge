@@ -9,7 +9,7 @@ Este proyecto consiste en el desarrollo de una aplicación web para la gestión 
 - **Capa de Acceso a Datos:** .Net Core 7 - ORM: Entity Framework Core
 - **Base de Datos:** SQL
 
-##Requisitos Previos
+## Requisitos Previos
 - Node.js: [Descargar e Instalar Node.js](https://nodejs.org/)
 - .NET SDK: [Descargar e Instalar .NET SDK](https://dotnet.microsoft.com/download)
 - SQL Server: [Descargar e Instalar SQL Server](https://www.microsoft.com/sql-server/)
