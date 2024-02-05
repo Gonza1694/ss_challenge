@@ -1,4 +1,4 @@
-Speed Solutions Challenge
+# Speed Solutions Challenge
 
 Este proyecto consiste en el desarrollo de una aplicación web para la gestión integral de una estación de servicio. Incluye módulos para productos, precios, control de dispensadores y mangueras, así como visualización detallada de configuraciones y transacciones.
 
