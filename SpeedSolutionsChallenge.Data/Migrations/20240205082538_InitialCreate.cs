@@ -17,7 +17,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                 {
                     DispenserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     HoseCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -32,20 +32,13 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    Unit = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DispenserId = table.Column<int>(type: "int", nullable: false)
+                    ProductType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Unit = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.ProductId);
-                    table.ForeignKey(
-                        name: "FK_Products_Dispensers_DispenserId",
-                        column: x => x.DispenserId,
-                        principalTable: "Dispensers",
-                        principalColumn: "DispenserId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,9 +48,9 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                     HoseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DispenserId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    DispenserId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,7 +75,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false)
+                    ProductId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,8 +84,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                         name: "FK_Prices_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ProductId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -109,11 +101,6 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                 name: "IX_Prices_ProductId",
                 table: "Prices",
                 column: "ProductId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_DispenserId",
-                table: "Products",
-                column: "DispenserId");
         }
 
         /// <inheritdoc />
@@ -126,10 +113,10 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                 name: "Prices");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Dispensers");
 
             migrationBuilder.DropTable(
-                name: "Dispensers");
+                name: "Products");
         }
     }
 }

@@ -12,7 +12,7 @@ using SpeedSolutionsChallenge.Data.DBContext;
 namespace SpeedSolutionsChallenge.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240131220451_InitialCreate")]
+    [Migration("20240205082538_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,7 +38,8 @@ namespace SpeedSolutionsChallenge.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("DispenserId");
 
@@ -53,7 +54,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HoseId"));
 
-                    b.Property<int>("DispenserId")
+                    b.Property<int?>("DispenserId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -64,7 +65,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("HoseId");
@@ -87,7 +88,7 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Value")
@@ -108,9 +109,6 @@ namespace SpeedSolutionsChallenge.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<int>("DispenserId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -119,58 +117,37 @@ namespace SpeedSolutionsChallenge.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Unit")
-                        .HasColumnType("int");
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("DispenserId");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("SpeedSolutionsChallenge.Data.Models.Hose", b =>
                 {
-                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Dispenser", "Dispenser")
+                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Dispenser", null)
                         .WithMany("Hoses")
-                        .HasForeignKey("DispenserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("DispenserId");
 
-                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Product", "Product")
+                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Product", null)
                         .WithMany("Hoses")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("Dispenser");
-
-                    b.Navigation("Product");
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("SpeedSolutionsChallenge.Data.Models.Price", b =>
                 {
-                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Product", "Product")
+                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Product", null)
                         .WithMany("Prices")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("SpeedSolutionsChallenge.Data.Models.Product", b =>
-                {
-                    b.HasOne("SpeedSolutionsChallenge.Data.Models.Dispenser", "Dispenser")
-                        .WithMany()
-                        .HasForeignKey("DispenserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Dispenser");
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("SpeedSolutionsChallenge.Data.Models.Dispenser", b =>
